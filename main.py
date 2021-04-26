@@ -1,18 +1,21 @@
 """ Task that intakes and evaluates SA ID and outputs year born, month born, date of birth, gender,
-citizen/noncitizen """
+citizen/noncitizen. This SA ID program only works for years 1922 - 2021(a century) """
 _id = 'global'
 year = 'global'
 
 
+# function asks user for ID and checks to see if ID given is valid. If not, it repeats itself until valid ID is given
 def valid_id():
     global _id
     global year
     while True:
         try:
             _id = input("Enter your ID: ")
-            int(_id)
-            list31 = ["01", "03", "05", "07", "08", "10", "12"]
-            list30 = ["04", "06", "09", "11"]
+            int(_id)  # makes sure value isn't string
+            if type(_id) == float:
+                raise ValueError
+            list31 = ["01", "03", "05", "07", "08", "10", "12"]  # Represents all months with 31 days
+            list30 = ["04", "06", "09", "11"]  # Represents all months with 30 days
             if 22 <= int(_id[0:2]) <= 99:
                 year = 1900 + int(_id[0:2])
                 if len(_id) != 13 or (12 < int(_id[2: 4]) < 1):
@@ -23,14 +26,14 @@ def valid_id():
                 elif (_id[2:4]) in list30:
                     if int(_id[4:6]) not in range(31) or int(_id[4:6]) == 0:
                         raise ValueError
-                elif (_id[2:4]) == "02":
+                elif (_id[2:4]) == "02":  # if month is february, checks if it is leap year
                     if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
                         if int(_id[4:6]) not in range(30) or int(_id[4:6]) == 0:
                             raise ValueError
                     else:
                         if int(_id[4:6]) not in range(29) or int(_id[4:6]) == 0:
                             raise ValueError
-                elif 9999 < int(_id[6:10]) < 0:
+                elif int(_id[6:10]) not in range(1000) or int(_id[6:10]) == 0:
                     raise ValueError
                 elif _id[10] != "0" or _id[10] != "1":
                     raise ValueError
@@ -53,7 +56,7 @@ def valid_id():
                         else:
                             if int(_id[4:6]) not in range(28) or int(_id[4:6]) == 0:
                                 raise ValueError
-                    elif 9999 < int(_id[6:10]) < 0:
+                    elif int(_id[6:10]) not in range(1000) or int(_id[6:10]) == 0:
                         raise ValueError
                     elif _id[10] != "0" or _id[10] != "1":
                         raise ValueError
@@ -66,7 +69,7 @@ def valid_id():
 
 valid_id()
 months = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June",
-          "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December", }
+          "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
 print("")
 print("Year born: {}".format(year))
 print("Month born: {}".format(months[_id[2:4]]))
