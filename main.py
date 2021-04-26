@@ -15,21 +15,20 @@ def valid_id():
             list30 = ["04", "06", "09", "11"]
             if 22 <= int(_id[0:2]) <= 99:
                 year = 1900 + int(_id[0:2])
-
                 if len(_id) != 13 or (12 < int(_id[2: 4]) < 1):
                     raise ValueError
                 if (_id[2:4]) in list31:
-                    if 31 < int(_id[4:6]) < 1:
+                    if int(_id[4:6]) not in range(32) or int(_id[4:6]) == 0:
                         raise ValueError
                 elif (_id[2:4]) in list30:
-                    if int(_id[4:6]) not in range(30) and int(_id[4:6]) == 0:
+                    if int(_id[4:6]) not in range(31) or int(_id[4:6]) == 0:
                         raise ValueError
                 elif (_id[2:4]) == "02":
                     if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
-                        if 29 < int(_id[4:6]) < 1:
+                        if int(_id[4:6]) not in range(30) or int(_id[4:6]) == 0:
                             raise ValueError
                     else:
-                        if 28 < int(_id[4:6]) < 1:
+                        if int(_id[4:6]) not in range(29) or int(_id[4:6]) == 0:
                             raise ValueError
                 elif 9999 < int(_id[6:10]) < 0:
                     raise ValueError
@@ -42,23 +41,23 @@ def valid_id():
                     if len(_id) != 13 or (12 < int(_id[2: 4]) < 1):
                         raise ValueError
                     if (_id[2:4]) in list31:
-                        if 31 < int(_id[4:6]) < 1:
+                        if int(_id[4:6]) not in range(31) or int(_id[4:6]) == 0:
                             raise ValueError
                     elif (_id[2:4]) in list30:
-                        if 30 < int(_id[4:6]) < 1:
+                        if int(_id[4:6]) not in range(30) or int(_id[4:6]) == 0:
                             raise ValueError
                     elif (_id[2:4]) == "02":
                         if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
-                            if 29 < int(_id[4:6]) < 1:
+                            if int(_id[4:6]) not in range(29) or int(_id[4:6]) == 0:
                                 raise ValueError
                         else:
-                            if 28 < int(_id[4:6]) < 1:
+                            if int(_id[4:6]) not in range(28) or int(_id[4:6]) == 0:
                                 raise ValueError
                     elif 9999 < int(_id[6:10]) < 0:
                         raise ValueError
                     elif _id[10] != "0" or _id[10] != "1":
                         raise ValueError
-                break
+                    break
         except ValueError:
             print("Invalid entry")
             print("")
@@ -80,4 +79,3 @@ if _id[10] == "0":
     print("Citizenship: SA citizen")
 else:
     print("Citizenship: Permanents resident")
-
