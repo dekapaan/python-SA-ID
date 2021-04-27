@@ -21,19 +21,19 @@ def valid_id():
                 if len(_id) != 13 or (12 < int(_id[2: 4]) < 1):
                     raise ValueError
                 if (_id[2:4]) in list31:
-                    if int(_id[4:6]) not in range(32) or int(_id[4:6]) == 0:
+                    if int(_id[4:6]) not in range(1, 32):
                         raise ValueError
                 elif (_id[2:4]) in list30:
-                    if int(_id[4:6]) not in range(31) or int(_id[4:6]) == 0:
+                    if int(_id[4:6]) not in range(1, 31):
                         raise ValueError
                 elif (_id[2:4]) == "02":  # if month is february, checks if it is leap year
                     if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
-                        if int(_id[4:6]) not in range(30) or int(_id[4:6]) == 0:
+                        if int(_id[4:6]) not in range(1, 30):
                             raise ValueError
                     else:
-                        if int(_id[4:6]) not in range(29) or int(_id[4:6]) == 0:
+                        if int(_id[4:6]) not in range(1, 29):
                             raise ValueError
-                elif int(_id[6:10]) not in range(1000) or int(_id[6:10]) == 0:
+                elif int(_id[6:10]) not in range(10000):
                     raise ValueError
                 elif _id[10] != "0" or _id[10] != "1":
                     raise ValueError
@@ -44,19 +44,19 @@ def valid_id():
                     if len(_id) != 13 or (12 < int(_id[2: 4]) < 1):
                         raise ValueError
                     if (_id[2:4]) in list31:
-                        if int(_id[4:6]) not in range(31) or int(_id[4:6]) == 0:
+                        if int(_id[4:6]) not in range(1, 32):
                             raise ValueError
                     elif (_id[2:4]) in list30:
-                        if int(_id[4:6]) not in range(30) or int(_id[4:6]) == 0:
+                        if int(_id[4:6]) not in range(1, 31):
                             raise ValueError
-                    elif (_id[2:4]) == "02":
+                    elif (_id[2:4]) == "02":  # if month is february, checks if it is leap year
                         if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
-                            if int(_id[4:6]) not in range(29) or int(_id[4:6]) == 0:
+                            if int(_id[4:6]) not in range(1, 30):
                                 raise ValueError
                         else:
-                            if int(_id[4:6]) not in range(28) or int(_id[4:6]) == 0:
+                            if int(_id[4:6]) not in range(1, 29):
                                 raise ValueError
-                    elif int(_id[6:10]) not in range(1000) or int(_id[6:10]) == 0:
+                    elif int(_id[6:10]) not in range(10000):
                         raise ValueError
                     elif _id[10] != "0" or _id[10] != "1":
                         raise ValueError
